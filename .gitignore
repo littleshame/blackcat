@@ -1,4 +1,5 @@
 .git
 .idea
-out
+.out
 *.iml
+.target
