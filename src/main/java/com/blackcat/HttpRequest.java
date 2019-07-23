@@ -1,5 +1,6 @@
 package com.blackcat;
 
+import com.blackcat.api.Context;
 import lombok.Getter;
 
 import java.io.IOException;
@@ -16,6 +17,8 @@ public class HttpRequest {
     private String method;
     @Getter
     private String protocol;
+
+    private Context context;
 
     private InputStream input;
 
@@ -44,5 +47,13 @@ public class HttpRequest {
         method = line.substring(0, index1);
         url = line.substring(index1 + 1, index2);
         protocol = line.substring(index2, line.length() - 1);
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(StandardContext context) {
+        this.context = context;
     }
 }

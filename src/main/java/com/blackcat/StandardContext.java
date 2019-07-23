@@ -1,5 +1,7 @@
 package com.blackcat;
 
+import com.blackcat.api.Context;
+
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -10,12 +12,14 @@ import java.util.*;
  * @author: tjc
  * @Date: 2019-7-13
  */
-public class StandardContext {
+public class StandardContext implements Context{
 
     /**
      * classLoader只允许读取webroot下的class文件
      */
-    private String webroot = "D:/IntelliJ IDEA 2017.1.6/workspace/blackcat/WEB-INF/classes";
+    private String repositoryDir = "D:/IntelliJ IDEA 2017.1.6/workspace/blackcat/WEB-INF/classes";
+
+    private String webroot = "D:/IntelliJ IDEA 2017.1.6/workspace/blackcat/WEB-INF";
 
     /**
      * 已加载的servlet类池
@@ -41,7 +45,7 @@ public class StandardContext {
     private void onServlet() {
         try {
             try {
-                loadRepository(webroot);
+                loadRepository(repositoryDir);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -82,7 +86,7 @@ public class StandardContext {
 
     public Set<String> loadClassName(String pkg) {
         Set classes = new HashSet();
-        String path = webroot + "/" + pkg.replaceAll("\\.","/");
+        String path = repositoryDir + "/" + pkg.replaceAll("\\.","/");
         File parentDir = new File(path);
         File[] sonfiles = parentDir.listFiles();
         for (File son : sonfiles) {
@@ -108,5 +112,10 @@ public class StandardContext {
      */
     public void setRequestMappings(HashMap<String, String> requestMappings) {
         this.requestMappings = requestMappings;
+    }
+
+    @Override
+    public String getWebRoot() {
+        return webroot;
     }
 }

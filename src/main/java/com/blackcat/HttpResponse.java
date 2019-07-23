@@ -1,6 +1,7 @@
 package com.blackcat;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.io.OutputStream;
 
@@ -11,7 +12,7 @@ import java.io.OutputStream;
 public class HttpResponse {
     @Getter
     private HttpRequest request;
-
+    @Getter
     private OutputStream output;
 
     public HttpResponse(OutputStream output) {

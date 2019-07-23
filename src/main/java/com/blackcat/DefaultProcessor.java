@@ -32,6 +32,7 @@ public class DefaultProcessor {
         }
 
         HttpRequest request = new HttpRequest(input);
+        request.setContext(connector.getContext());
         request.parse();
         HttpResponse response = new HttpResponse(output);
         response.setRequest(request);
@@ -41,7 +42,11 @@ public class DefaultProcessor {
         try {
             clazz = map(request);
             //实例化可以做个缓存
-            servlet = (Servlet) clazz.newInstance();
+            if(clazz == null) {
+                servlet = new DefaultServlet();
+            }else{
+                servlet = (Servlet) clazz.newInstance();
+            }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {
@@ -70,7 +75,9 @@ public class DefaultProcessor {
         Map<String, String> requestMappings = getContext().requestMappings;
         String url = request.getUrl();
         String className = requestMappings.get(url);
-
+        if(className == null) {
+            return null;
+        }
         return Class.forName(className);
     }
 
