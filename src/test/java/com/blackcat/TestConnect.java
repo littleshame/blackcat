@@ -17,8 +17,11 @@ import java.net.URLClassLoader;
  */
 public class TestConnect {
 
+    /**
+     * 模拟客户端连接blackcat（需要先启动blackcat）
+     */
     @Test
-    public void connect1(){
+    public void testClientConnect(){
 
         try {
             Socket socket = new Socket("127.0.0.1",8080);

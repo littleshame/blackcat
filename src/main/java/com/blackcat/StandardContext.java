@@ -1,6 +1,8 @@
 package com.blackcat;
 
 import com.blackcat.api.Context;
+import com.blackcat.exception.ServletException;
+import com.blackcat.servlet.WebServlet;
 
 import java.io.File;
 import java.net.MalformedURLException;

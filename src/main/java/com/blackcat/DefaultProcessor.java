@@ -1,12 +1,16 @@
 package com.blackcat;
 
-import bean.HelloServlet;
+
+import com.blackcat.api.HttpRequest;
+import com.blackcat.api.HttpResponse;
+import com.blackcat.exception.ServletException;
+import com.blackcat.servlet.DefaultServlet;
+import com.blackcat.servlet.Servlet;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -54,7 +58,11 @@ public class DefaultProcessor {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-        servlet.service(request, response);
+        try {
+            servlet.service(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
 
 
         try {

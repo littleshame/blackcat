@@ -1,4 +1,4 @@
-package com.blackcat;
+package com.blackcat.exception;
 
 /**
  * @author: tjc

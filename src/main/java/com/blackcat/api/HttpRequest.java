@@ -1,5 +1,6 @@
-package com.blackcat;
+package com.blackcat.api;
 
+import com.blackcat.StandardContext;
 import com.blackcat.api.Context;
 import lombok.Getter;
 

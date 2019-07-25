@@ -1,9 +1,9 @@
-package bean;
+package com.blackcat.bean;
 
-import com.blackcat.HttpRequest;
-import com.blackcat.HttpResponse;
-import com.blackcat.Servlet;
-import com.blackcat.WebServlet;
+import com.blackcat.api.HttpRequest;
+import com.blackcat.api.HttpResponse;
+import com.blackcat.servlet.Servlet;
+import com.blackcat.servlet.WebServlet;
 
 /**
  * @author: tjc

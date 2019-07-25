@@ -1,4 +1,4 @@
-package com.blackcat;
+package com.blackcat.servlet;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
