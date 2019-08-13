@@ -14,8 +14,6 @@ public class Boostrap {
 
     public static void main(String[] args) {
 
-        String webroot = "target/classes";
-
         StandardContext context = new StandardContext();
         context.start();
 

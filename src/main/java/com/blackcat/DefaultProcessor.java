@@ -41,21 +41,14 @@ public class DefaultProcessor {
         HttpResponse response = new HttpResponse(output);
         response.setRequest(request);
 
-        Class<?> clazz = null;
         Servlet servlet = null;
         try {
-            clazz = map(request);
+            servlet = map(request);
             //实例化可以做个缓存
-            if(clazz == null) {
+            if(servlet == null) {
                 servlet = new DefaultServlet();
-            }else{
-                servlet = (Servlet) clazz.newInstance();
             }
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
         try {
@@ -79,14 +72,10 @@ public class DefaultProcessor {
      * @param request
      * @return
      */
-    private Class<?> map(HttpRequest request) throws ClassNotFoundException {
-        Map<String, String> requestMappings = getContext().requestMappings;
-        String url = request.getUrl();
-        String className = requestMappings.get(url);
-        if(className == null) {
-            return null;
-        }
-        return Class.forName(className);
+    private Servlet map(HttpRequest request) throws ClassNotFoundException {
+        return getContext().servletMapping.get(request.getUrl());
+
+
     }
 
     private StandardContext getContext() {
